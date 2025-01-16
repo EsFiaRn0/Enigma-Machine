@@ -1,0 +1,135 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f1ea;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-image: radial-gradient(circle at 50%, #f4f1ea 30%, #d8c6a2 100%);
+}
+
+.keyboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; 
+    background: linear-gradient(135deg, #b6a69f, #c3b09e);
+    border: 8px solid #8d7761;
+    border-radius: 15px;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.4), 
+        inset 0 6px 12px rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    width: 100%; 
+    max-width: 1000px;
+    gap: 12px;
+    justify-content: center;
+}
+
+.key {
+    position: relative;
+    width: 75px; 
+    height: 60px; 
+    background: radial-gradient(circle at top left, #555, #333);
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 3px 4px rgba(0, 0, 0, 0.4);
+    border: 4px solid #7b5c42;
+    border-radius: 10px;
+    font-size: 18px; 
+    text-align: center;
+    line-height: 50px; 
+    box-shadow: 
+        0 5px 10px rgba(0, 0, 0, 0.5), 
+        inset 0 -3px 6px rgba(0, 0, 0, 0.6),
+        inset 0 3px 6px rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.3s ease-in-out, background 0.3s ease;
+}
+
+.key:hover {
+    background: radial-gradient(circle at top left, #666, #444);
+    box-shadow: 
+        0 7px 15px rgba(0, 0, 0, 0.7), 
+        inset 0 -4px 8px rgba(0, 0, 0, 0.8), 
+        inset 0 4px 8px rgba(255, 255, 255, 0.3);
+    filter: brightness(1.2);
+}
+
+.key.active {
+    transform: translateY(4px);
+    background: #444;
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.6), 
+        inset 0 -3px 6px rgba(0, 0, 0, 0.7), 
+        inset 0 3px 6px rgba(255, 255, 255, 0.3);
+}
+
+.key::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px; 
+    height: 5px;
+    background-color: #7b5c42;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+textarea {
+    margin-top: 30px;
+    width: 90%;
+    max-width: 650px;
+    height: 180px;
+    background: #f9f3e7;
+    color: #333;
+    border: 3px solid #7b5c42;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.5;
+    resize: none;
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.3), 
+        inset 0 4px 8px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+textarea:focus {
+    border-color: #5b3c1e;
+    box-shadow: 0 0 8px rgba(91, 60, 30, 0.7);
+    outline: none;
+}
+
+button[type="submit"] {
+    margin-top: 30px;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #4a3f36, #6f5a47);
+    color: white;
+    border: 4px solid #7b5c42;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.6), 
+        inset 0 3px 6px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(135deg, #5b4a38, #7b5c42);
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.7), 
+        inset 0 4px 8px rgba(0, 0, 0, 0.8);
+}
+
+button[type="submit"]:active {
+    transform: translateY(3px);
+    background: linear-gradient(135deg, #3f2a1f, #5b3c1e);
+}
