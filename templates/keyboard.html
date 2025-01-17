@@ -7,8 +7,16 @@
   <!-- css -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
+
 <body>
   <div class="keyboard-background">
+    <!-- Output Container -->
+    <div id="output-container">
+      <h2>Texto seleccionado:</h2>
+      <p id="original-output"></p>
+    </div>
+    
+    <!-- Keyboard Container -->
     <div class="keyboard-container">
       <!-- Row of letters -->
       <div class="row">
@@ -46,7 +54,15 @@
         <button class="key">M</button>
       </div>
     </div>
+
+    <!-- Encryption -->
+    <div class="side-square">
+      <h2>Texto cifrado:</h2>
+      <p id="encrypted-output"></p>
+    </div>
+
   </div>
+</body>
 
   <!-- Scripts Js -->
   <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>

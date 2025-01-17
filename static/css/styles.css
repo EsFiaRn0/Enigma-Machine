@@ -1,12 +1,11 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #f4f1ea;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    font-family: 'Courier New', Courier, monospace;
     background-image: radial-gradient(circle at 50%, #f4f1ea 30%, #d8c6a2 100%);
 }
 
@@ -132,4 +131,87 @@ button[type="submit"]:hover {
 button[type="submit"]:active {
     transform: translateY(3px);
     background: linear-gradient(135deg, #3f2a1f, #5b3c1e);
+}
+
+.keyboard-background {
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    gap: 20px; 
+    padding: 20px;
+    width: 100%; 
+    max-width: 1700px; 
+    margin: auto; 
+}
+
+#output-container {
+    background: linear-gradient(135deg, #b6a69f, #c3b09e);
+    border: 8px solid #8d7761;
+    border-radius: 15px;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.4), 
+        inset 0 6px 12px rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden; 
+}
+
+#output {
+    color: #333;
+    background: #f9f3e7;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.3), 
+        inset 0 4px 8px rgba(255, 255, 255, 0.2);
+    width: 100%;
+    min-height: 50px;
+    max-height: 65px; 
+    overflow-y: auto; 
+    word-wrap: break-word; 
+    text-align: justify; 
+}
+
+#output-container h2 {
+    color: #4a3f36;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#output-container p {
+    color: #333;
+    background: #f9f3e7;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.3), 
+        inset 0 4px 8px rgba(255, 255, 255, 0.2);
+    width: 100%;
+    min-height: 65px;
+}
+
+.side-square {
+    background: linear-gradient(135deg, #b6a69f, #c3b09e);
+    border: 8px solid #8d7761;
+    border-radius: 15px;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.4), 
+        inset 0 6px 12px rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #333;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
 }

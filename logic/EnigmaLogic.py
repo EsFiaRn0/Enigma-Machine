@@ -11,7 +11,7 @@ Rotors = {
     "III": "BDFHJLCPRTXVZNYEIWGAKMUSQO",
 }
 
-# Reflector fixed
+# Reflector is pinned
 Reflector = "YRUHQSLDPXNGOKMIEBFZCWVJAT"
 
 # Function to create a mapping dictionary for a given rotor or reflector
