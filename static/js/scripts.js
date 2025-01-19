@@ -39,10 +39,9 @@ function sendLetterToServer(letter) {
     .then(response => response.json())
     .then(data => {
         if (data.status === "success") {
-            // Mostrar la letra cifrada en el área de salida
             const encryptedLetter = data.encrypted_letter;
             console.log(`Encrypted letter: ${encryptedLetter}`);
-            appendToEncryptedOutput(encryptedLetter);  // Mostrar la letra cifrada
+            appendToEncryptedOutput(encryptedLetter);  
         } else {
             console.error(`Error: ${data.message}`);
         }
@@ -55,8 +54,8 @@ keys.forEach(key => {
     key.addEventListener('mousedown', () => {
         const letter = key.textContent.trim();
         pressKey(key); 
-        appendToOriginalOutput(letter);  // Mostrar la letra presionada (texto original)
-        sendLetterToServer(letter);  // Enviar la letra al servidor para cifrarla
+        appendToOriginalOutput(letter);
+        sendLetterToServer(letter);  
     });
 });
 
@@ -70,3 +69,23 @@ document.addEventListener('keydown', (event) => {
         sendLetterToServer(letter);  
     }
 });
+
+document.querySelectorAll('.rotor-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const rotorId = button.getAttribute('data-rotor');
+      const letterDiv = document.getElementById(`rotor${rotorId}`);
+      const currentLetter = letterDiv.textContent;
+      const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let newIndex;
+  
+      if (button.classList.contains('up')) {
+        // Move up
+        newIndex = (alphabet.indexOf(currentLetter) + 1) % alphabet.length;
+      } else if (button.classList.contains('down')) {
+        // Move down
+        newIndex = (alphabet.indexOf(currentLetter) - 1 + alphabet.length) % alphabet.length;
+      }
+  
+      letterDiv.textContent = alphabet[newIndex];
+    });
+  });  

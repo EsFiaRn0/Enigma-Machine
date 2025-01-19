@@ -4,67 +4,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Enigma Machine</title>
-  <!-- css -->
+  <!-- CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
-
 <body>
   <div class="keyboard-background">
-    <!-- Output Container -->
-    <div id="output-container">
-      <h2>Texto seleccionado:</h2>
-      <p id="original-output"></p>
-    </div>
-    
-    <!-- Keyboard Container -->
-    <div class="keyboard-container">
-      <!-- Row of letters -->
-      <div class="row">
-        <button class="key">Q</button>
-        <button class="key">W</button>
-        <button class="key">E</button>
-        <button class="key">R</button>
-        <button class="key">T</button>
-        <button class="key">Y</button>
-        <button class="key">U</button>
-        <button class="key">I</button>
-        <button class="key">O</button>
-        <button class="key">P</button>
-      </div>
-      <!-- Row of letters -->
-      <div class="row">
-        <button class="key">A</button>
-        <button class="key">S</button>
-        <button class="key">D</button>
-        <button class="key">F</button>
-        <button class="key">G</button>
-        <button class="key">H</button>
-        <button class="key">J</button>
-        <button class="key">K</button>
-        <button class="key">L</button>
-      </div>
-      <!-- Row of letters -->
-      <div class="row">
-        <button class="key">Z</button>
-        <button class="key">X</button>
-        <button class="key">C</button>
-        <button class="key">V</button>
-        <button class="key">B</button>
-        <button class="key">N</button>
-        <button class="key">M</button>
-      </div>
-    </div>
+    <!-- Rotor Settings -->
+      <section class="rotor-settings">
+        {% for rotor in range(1, 4) %}
+        <div class="rotor">
+          <h3>Rotor {{ rotor }}</h3>
+          <div class="rotor-display">
+            <button class="rotor-button up" data-rotor="{{ rotor }}">▲</button>
+            <div class="rotor-letter" id="rotor{{ rotor }}">A</div>
+            <button class="rotor-button down" data-rotor="{{ rotor }}">▼</button>
+          </div>
+        </div>
+        {% endfor %}
+      </section>
 
-    <!-- Encryption -->
-    <div class="side-square">
-      <h2>Texto cifrado:</h2>
-      <p id="encrypted-output"></p>
-    </div>
+    <!-- Keyboard Section -->
+    <section class="keyboard-section">
+      <div id="output-container">
+        <h2>Texto seleccionado:</h2>
+        <p id="original-output"></p>
+      </div>
 
+      <div class="keyboard-container">
+        {% for row in ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"] %}
+        <div class="row">
+          {% for letter in row %}
+          <button class="key" aria-label="Tecla {{ letter }}">{{ letter }}</button>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Encrypted Text -->
+      <div class="side-square">
+        <h2>Texto cifrado:</h2>
+        <p id="encrypted-output"></p>
+      </div>
+    </section>
   </div>
-</body>
 
-  <!-- Scripts Js -->
+  <!-- JS Scripts -->
   <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>
