@@ -26,13 +26,10 @@ def log_key():
 
     if letter and rotor_positions:
         try:
-            # Configurar los rotores según las posiciones recibidas
             for i, rotor in enumerate(rotor_positions):
                 print(f"Setting rotor {i+1} to position {rotor}")
                 enigma.rotors[i].position = deque(Alphabet)
                 enigma.rotors[i].position.rotate(-Alphabet.index(rotor)) 
-
-            # Realizar el cifrado de la letra
             encrypted_letter = enigma.cypher_message(letter)
             print(f"Encrypted letter: {encrypted_letter}")
             return jsonify({"status": "success", "encrypted_letter": encrypted_letter})
@@ -54,7 +51,6 @@ def update_plugboard():
     
     if connections:
         try:
-            # Actualizar las conexiones del plugboard
             enigma.connections = enigma.parse_connections(connections)
             print(f"Parsed connections: {enigma.connections}")
             return jsonify({"status": "success"})
