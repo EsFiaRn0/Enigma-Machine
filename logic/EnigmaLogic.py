@@ -11,17 +11,16 @@ Rotors = {
     "III": "BDFHJLCPRTXVZNYEIWGAKMUSQO",
 }
 
-# Reflector is pinned
+# Reflector configuration
 Reflector = "YRUHQSLDPXNGOKMIEBFZCWVJAT"
 
-# Function to create a mapping dictionary for a given rotor or reflector
+# Mapping function
 def mapping(string):
     return {Alphabet[i]: string[i] for i in range(len(Alphabet))}
 
-# Class for a single rotor
+# Rotor class
 class Rotor:
     def __init__(self, type, start_position):
-        # Validate rotor type and start position
         if type not in Rotors:
             raise ValueError(f"Invalid rotor type: {type}")
         if start_position not in Alphabet:
@@ -30,69 +29,71 @@ class Rotor:
         self.mapping = mapping(Rotors[type])  # Forward mapping for the rotor
         self.reverse = {v: k for k, v in self.mapping.items()}  # Reverse mapping for the rotor
         self.position = deque(Alphabet)  # Initialize rotor position
-        self.position.rotate(-Alphabet.index(start_position))  # Set initial position
+        self.rotate_to(start_position)  # Set initial position
+
+    def rotate_to(self, position):
+        """Rotate the rotor to a specific start position."""
+        self.position.rotate(-Alphabet.index(position))  # Set the rotor to the correct start position
 
     def cypher(self, letter, reverse=False):
-        # Calculate the relative index within the rotor
-        index = (Alphabet.index(letter) + self.position.index('A')) % len(Alphabet)
-        intermediate_letter = self.position[index]
-
-        # Use forward or reverse mapping
-        if reverse:
-            cypher_letter = self.reverse[intermediate_letter]
-        else:
-            cypher_letter = self.mapping[intermediate_letter]
-
-        # Return the resulting letter adjusted to the rotor position
-        index = self.position.index(cypher_letter)
-        return Alphabet[(index - self.position.index('A')) % len(Alphabet)]
+        """Cipher a letter based on rotor's current position."""
+        offset = Alphabet.index(self.position[0])
+        index = (Alphabet.index(letter) + offset) % len(Alphabet)
+        intermediate_letter = Alphabet[index]
+        mapped_letter = self.reverse[intermediate_letter] if reverse else self.mapping[intermediate_letter]
+        index = (Alphabet.index(mapped_letter) - offset) % len(Alphabet)
+        return Alphabet[index]
 
     def rotate(self):
-        # Rotate the rotor one position and return True if a full rotation is completed
+        """Rotate the rotor by one position."""
         self.position.rotate(-1)
-        return self.position[0] == 'A'
+        return self.position[0] == Alphabet[0]
 
-# Class for the Enigma Machine
+# Enigma class
 class Enigma:
     def __init__(self, rotors, start_position, connections=None):
-        # Validate input lengths
         if len(rotors) != 3 or len(start_position) != 3:
-            raise ValueError("You must provide exactly 3 rotors and 3 start positions.")
-
+            raise ValueError("Exactly 3 rotors and 3 positions are required.")
+        
         self.rotors = [Rotor(type, pos) for type, pos in zip(rotors, start_position)]
-        self.reflector = mapping(Reflector)  # Fixed reflector mapping
+        self.reflector = mapping(Reflector)  
         self.connections = self.parse_connections(connections) if connections else {}
 
     def parse_connections(self, connections):
-        # Parse plugboard connections and validate them
+        """Parse plugboard connections."""
         connection_dict = {}
         pairs = connections.split()
         for pair in pairs:
             if len(pair) != 2 or pair[0] == pair[1] or pair[0] not in Alphabet or pair[1] not in Alphabet:
-                raise ValueError(f"Invalid connection pair: {pair}")
+                raise ValueError(f"Invalid connection: {pair}")
             connection_dict[pair[0]] = pair[1]
             connection_dict[pair[1]] = pair[0]
         return connection_dict
 
     def swap(self, letter):
-        # Swap letters using plugboard connections
+        """Swap letters through the plugboard."""
         return self.connections.get(letter, letter)
 
     def cypher_letter(self, letter):
-        # Pass the letter through the plugboard, rotors, reflector, and back
+        """Cipher one letter with the current Enigma setup."""
+        # First apply the plugboard swap before the rotors
         letter = self.swap(letter)
 
+        # Pass through the rotors
         for rotor in self.rotors:
             letter = rotor.cypher(letter)
 
+        # Reflect the letter
         letter = self.reflector[letter]
 
+        # Pass back through the rotors in reverse
         for rotor in reversed(self.rotors):
             letter = rotor.cypher(letter, reverse=True)
 
+        # Finally apply the plugboard swap again after the rotors
         letter = self.swap(letter)
 
-        # Rotate the first rotor and potentially others if necessary
+        # Rotate the first rotor and others if necessary
         rotate_next = True
         for rotor in self.rotors:
             if rotate_next:
@@ -103,30 +104,23 @@ class Enigma:
         return letter
 
     def cypher_message(self, message):
-        # Encrypt or decrypt the entire message
+        """Cipher the entire message."""
         return ''.join(self.cypher_letter(letter) for letter in message.upper() if letter in Alphabet)
 
-# Function to configure the Enigma machine
+# Configure the Enigma machine
 def configure_machine():
-    print("Available rotors: I, II, III")
-    rotors = input("Choose the order of the 3 rotors separated by spaces (example: I III II):").split()
-    start_positions = input("Choose the initial position for each rotor (example: A B C):").split()
-    connections = input("Define the board connections (example: AT BS DE FG HI, or press Enter to skip):").strip()
+    rotors = input("Choose 3 rotors (e.g., I II III): ").split()
+    start_positions = input("Set initial rotor positions (e.g., A B C): ").split()
+    connections = input("Enter board connections (e.g., AT BS), or press Enter to skip: ").strip()
     return rotors, start_positions, connections
 
 if __name__ == "__main__":
     rotors, start_positions, connections = configure_machine()
 
     try:
-        enigma = Enigma(
-            rotors=rotors,
-            start_position=start_positions,
-            connections=connections
-        )
-        message = input("Enter the message to be encrypted: ").strip().upper()
-
+        enigma = Enigma(rotors=rotors, start_position=start_positions, connections=connections)
+        message = input("Enter the message to encrypt: ").strip().upper()
         cypher = enigma.cypher_message(message)
-
         print(f"Encrypted message: {cypher}")
     except Exception as e:
         print(f"Error: {e}")

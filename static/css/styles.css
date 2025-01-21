@@ -37,6 +37,93 @@ body {
     margin: 20px 0; 
 }
 
+.plugboard-section {
+    text-align: center;
+    position: relative;
+    background: linear-gradient(135deg, #b6a69f, #c3b09e);
+    border: 8px solid #8d7761;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.4), 
+        inset 0 6px 12px rgba(255, 255, 255, 0.1);
+}
+
+.plugboard {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px auto;
+}
+
+.plug-row {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.plug {
+    position: relative;
+    text-align: center;
+}
+
+.plug-letter {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #4a3f36;
+    margin-bottom: 8px;
+}
+
+.plug-socket {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #666, #444);
+    border: 2px solid #7b5c42;
+    border-radius: 50%;
+    margin: 0 auto;
+    cursor: pointer;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.5), 
+        inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.plug-socket:hover {
+    background: linear-gradient(135deg, #3a9d3a, #2e7d2e);
+    transform: scale(1.15);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.7), 
+        inset 0 3px 6px rgba(255, 255, 255, 0.3);
+}
+
+.plug-socket:active {
+    background: linear-gradient(135deg, #2e7d2e, #1b5e20);
+    transform: scale(1.05);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.6), 
+        inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.plug-socket.selected-first {
+    background: linear-gradient(135deg, #4CAF50, #388E3C); 
+}
+
+.plug-socket.selected-second {
+    background: linear-gradient(135deg, #F44336, #D32F2F); 
+    background-color: red;  
+    border: 2px solid darkred; 
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); 
+}
+
+#plugboard-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
 .rotor-button {
     font-size: 20px;
     color: #f9f3e7;
@@ -52,17 +139,17 @@ body {
     box-shadow: 
         0 4px 8px rgba(0, 0, 0, 0.6), 
         inset 0 2px 4px rgba(255, 255, 255, 0.2);
-    transition: all 0.2s ease-in-out; /* Transición suave */
+    transition: all 0.2s ease-in-out; 
 }
 
 .rotor-button:hover {
-    transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+    transform: scale(1.1);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
 }
 
 .rotor-button:active {
-    transform: scale(0.9); /* Efecto de pulsación */
-    background: #444; /* Color más oscuro al presionar */
+    transform: scale(0.9); 
+    background: #444; 
 }
 
 .rotor-settings {
@@ -296,4 +383,4 @@ button[type="submit"]:active {
     word-wrap: break-word; 
     text-align: justify;
     font-family: 'Courier New', Courier, monospace;
-}
+}/* Color más oscuro al presionar */

@@ -10,18 +10,18 @@
 <body>
   <div class="keyboard-background">
     <!-- Rotor Settings -->
-      <section class="rotor-settings">
-        {% for rotor in range(1, 4) %}
-        <div class="rotor">
-          <h3>Rotor {{ rotor }}</h3>
-          <div class="rotor-display">
-            <button class="rotor-button up" data-rotor="{{ rotor }}">▲</button>
-            <div class="rotor-letter" id="rotor{{ rotor }}">A</div>
-            <button class="rotor-button down" data-rotor="{{ rotor }}">▼</button>
-          </div>
+    <section class="rotor-settings">
+      {% for rotor in range(1, 4) %}
+      <div class="rotor">
+        <h3>Rotor {{ rotor }}</h3>
+        <div class="rotor-display">
+          <button class="rotor-button up" data-rotor="{{ rotor }}">▲</button>
+          <div class="rotor-letter" id="rotor{{ rotor }}">A</div>
+          <button class="rotor-button down" data-rotor="{{ rotor }}">▼</button>
         </div>
-        {% endfor %}
-      </section>
+      </div>
+      {% endfor %}
+    </section>
 
     <!-- Keyboard Section -->
     <section class="keyboard-section">
@@ -46,8 +46,35 @@
         <p id="encrypted-output"></p>
       </div>
     </section>
-  </div>
 
+    </section>
+        <!-- Plugboard Section -->
+      <div class="plugboard-section">
+        <div class="plugboard">
+          <!-- First row of letters -->
+          <div class="plug-row">
+            {% for letter in "ABCDEFGHIJKLM" %}
+            <div class="plug" id="plug-{{ letter }}">
+              <div class="plug-letter">{{ letter }}</div>
+              <div class="plug-socket" data-letter="{{ letter }}"></div>
+            </div>
+            {% endfor %}
+          </div>
+
+          <!-- Second row of letters -->
+          <div class="plug-row">
+            {% for letter in "NOPQRSTUVWXYZ" %}
+            <div class="plug" id="plug-{{ letter }}">
+              <div class="plug-letter">{{ letter }}</div>
+              <div class="plug-socket" data-letter="{{ letter }}"></div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <canvas id="plugboard-canvas"></canvas>
+      </div>
+    </section>
+  </div>
   <!-- JS Scripts -->
   <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
