@@ -1,0 +1,93 @@
+.rotor-button {
+    font-size: 20px;
+    color: #f9f3e7;
+    background: linear-gradient(135deg, #333, #222);
+    border: 2px solid #444;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.6), 
+        inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rotor-button:hover {
+    transform: scale(1.1);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.8), 
+        inset 0 3px 6px rgba(255, 255, 255, 0.3);
+}
+
+.rotor-button:active {
+    transform: scale(0.95);
+    background: #444;
+    box-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.5), 
+        inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.rotor-settings {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: linear-gradient(135deg, #b6a69f, #c3b09e);
+    border: 8px solid #8d7761;
+    border-radius: 15px;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.4), 
+        inset 0 6px 12px rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.rotor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.rotor h3 {
+    font-size: 18px;
+    color: #4a3f36;
+    margin: 0;
+    font-weight: bold;
+}
+
+.rotor label {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.rotor select {
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    border: 2px solid #7b5c42;
+    border-radius: 8px;
+    background: #f9f3e7;
+    color: #333;
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.3), 
+        inset 0 4px 8px rgba(255, 255, 255, 0.2);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rotor select:focus {
+    border-color: #5b3c1e;
+    box-shadow: 
+        0 0 8px rgba(91, 60, 30, 0.7), 
+        inset 0 4px 8px rgba(255, 255, 255, 0.3);
+    outline: none;
+}

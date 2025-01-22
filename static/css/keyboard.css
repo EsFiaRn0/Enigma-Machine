@@ -1,0 +1,37 @@
+.keyboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; 
+    background: linear-gradient(135deg, #b6a69f, #c3b09e);
+    border: 8px solid #8d7761;
+    border-radius: 15px;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.4), 
+        inset 0 6px 12px rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    width: 5000px; 
+    max-width: 1000px;
+    justify-content: center;
+}
+
+.keyboard-background {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 20px; 
+    padding: 20px;
+    width: 100%; 
+    max-width: 1700px; 
+    margin: auto; 
+}
+
+.keyboard-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    gap: 20px;
+}

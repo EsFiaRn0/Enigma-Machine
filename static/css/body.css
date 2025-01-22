@@ -1,0 +1,17 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background-image: radial-gradient(circle at 50%, #f4f1ea 30%, #d8c6a2 100%);
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 5px;
+    }
+}
