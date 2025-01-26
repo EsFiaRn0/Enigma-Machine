@@ -14,7 +14,7 @@
       {% for rotor in range(1, 4) %}
       <div class="rotor">
         <h3>Rotor {{ rotor }}</h3>
-        <div class="rotor-display">
+        <div class="rotor-container">
           <button class="rotor-button up" data-rotor="{{ rotor }}">▲</button>
           <div class="rotor-letter" id="rotor{{ rotor }}">A</div>
           <button class="rotor-button down" data-rotor="{{ rotor }}">▼</button>
@@ -25,10 +25,6 @@
 
     <!-- Keyboard Section -->
     <section class="keyboard-section">
-      <div id="output-container">
-        <h2>Texto seleccionado:</h2>
-        <p id="original-output"></p>
-      </div>
 
       <div class="keyboard-container">
         {% for row in ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"] %}
@@ -40,14 +36,6 @@
         {% endfor %}
       </div>
 
-      <!-- Encrypted Text -->
-      <div class="side-square">
-        <h2>Texto cifrado:</h2>
-        <p id="encrypted-output"></p>
-      </div>
-    </section>
-
-    </section>
         <!-- Plugboard Section -->
       <div class="plugboard-section">
         <div class="plugboard">
@@ -74,8 +62,30 @@
         <canvas id="plugboard-canvas"></canvas>
       </div>
     </section>
+
+    <!-- Control buttons -->
+    <div class="button-container">
+      <button id="save">Guardar</button>
+      <button id="reset">Reiniciar</button>
+      <button id="delete">Eliminar</button>
+    </div>
+    
+    <!-- Selected and encrypted text -->
+    <div class="output-wrapper">
+      <div id="output-container">
+        <h2>Texto seleccionado:</h2>
+        <p id="original-output"></p>
+      </div>
+      <div class="side-square">
+        <h2>Texto cifrado:</h2>
+        <p id="encrypted-output"></p>
+      </div>
+    </div>
+    
   </div>
   <!-- JS Scripts -->
-  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+   <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script> 
+  <!--<script src="{{ url_for('static', filename='js/scripts.js') }}"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

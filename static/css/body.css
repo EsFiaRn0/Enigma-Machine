@@ -5,13 +5,26 @@ body {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    padding: 2rem;
     font-family: 'Courier New', Courier, monospace;
-    background-image: radial-gradient(circle at 50%, #f4f1ea 30%, #d8c6a2 100%);
-    padding: 10px;
+    font-size: 1rem;
+    background: #8b6f56;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    color: #4a3a2b;
+    transition: background 0.5s ease, color 0.5s ease;
 }
 
 @media (max-width: 768px) {
     body {
-        padding: 5px;
+        padding: 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 280px) {
+    body {
+        padding: 1rem;
+        font-size: 0.8rem;
     }
 }

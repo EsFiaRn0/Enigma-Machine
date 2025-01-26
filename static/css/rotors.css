@@ -1,93 +1,144 @@
-.rotor-button {
-    font-size: 20px;
-    color: #f9f3e7;
-    background: linear-gradient(135deg, #333, #222);
-    border: 2px solid #444;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 
-        0 4px 8px rgba(0, 0, 0, 0.6), 
-        inset 0 2px 4px rgba(255, 255, 255, 0.2);
-    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.rotor-button:hover {
-    transform: scale(1.1);
-    box-shadow: 
-        0 6px 12px rgba(0, 0, 0, 0.8), 
-        inset 0 3px 6px rgba(255, 255, 255, 0.3);
-}
-
-.rotor-button:active {
-    transform: scale(0.95);
-    background: #444;
-    box-shadow: 
-        0 2px 6px rgba(0, 0, 0, 0.5), 
-        inset 0 2px 4px rgba(0, 0, 0, 0.6);
-}
-
 .rotor-settings {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
     background: linear-gradient(135deg, #b6a69f, #c3b09e);
-    border: 8px solid #8d7761;
-    border-radius: 15px;
-    box-shadow: 
-        0 10px 25px rgba(0, 0, 0, 0.4), 
-        inset 0 6px 12px rgba(255, 255, 255, 0.1);
-    padding: 20px;
+    border: 6px solid #8d7761;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), inset 0 4px 8px rgba(255, 255, 255, 0.1);
+    padding: 16px;
     width: 90%;
-    max-width: 1000px;
-    margin: 20px auto;
+    max-width: 400px;
+    margin: 0 auto;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    top: 50%;
 }
 
-.rotor {
+.rotor-settings:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), inset 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+.rotor-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 
-.rotor h3 {
-    font-size: 18px;
-    color: #4a3f36;
-    margin: 0;
+.rotor-letter {
+    font-size: 24px;
     font-weight: bold;
-}
-
-.rotor label {
-    font-size: 14px;
-    color: #333;
-    font-weight: 500;
-}
-
-.rotor select {
-    padding: 10px;
-    font-size: 16px;
-    font-family: 'Courier New', Courier, monospace;
-    border: 2px solid #7b5c42;
+    color: #f9f3e7;
+    background: linear-gradient(135deg, #666, #444);
+    border: 3px solid #111;
     border-radius: 8px;
-    background: #f9f3e7;
-    color: #333;
-    box-shadow: 
-        0 4px 10px rgba(0, 0, 0, 0.3), 
-        inset 0 4px 8px rgba(255, 255, 255, 0.2);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 12px;
+    width: 20px;
+    height: 50px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
-.rotor select:focus {
-    border-color: #5b3c1e;
-    box-shadow: 
-        0 0 8px rgba(91, 60, 30, 0.7), 
-        inset 0 4px 8px rgba(255, 255, 255, 0.3);
-    outline: none;
+.rotor-button {
+    font-size: 14px;
+    color: #f9f3e7;
+    background: linear-gradient(135deg, #333, #222);
+    border: 2px solid #444;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rotor-button.up {
+    background: linear-gradient(135deg, #4CAF50, #388E3C);
+    border: 2px solid #2e7d2e;
+    margin-bottom: 5px;
+}
+
+.rotor-button.down {
+    background: linear-gradient(135deg, #F44336, #D32F2F);
+    border: 2px solid #b71c1c;
+    margin-top: 5px;
+}
+
+.rotor-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7), inset 0 3px 6px rgba(255, 255, 255, 0.3);
+}
+
+.rotor-button:active {
+    transform: scale(0.95);
+    background: #444;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), inset 0 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 1024px) {
+    .rotor-settings {
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .rotor-letter {
+        font-size: 20px;
+        padding: 8px;
+    }
+
+    .rotor-button {
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .rotor-settings {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .rotor-letter {
+        font-size: 18px;
+        padding: 6px;
+    }
+
+    .rotor-button {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rotor-settings {
+        gap: 6px;
+        padding: 8px;
+    }
+
+    .rotor-letter {
+        font-size: 16px;
+        padding: 4px;
+    }
+
+    .rotor-button {
+        width: 22px;
+        height: 22px;
+        font-size: 9px;
+    }
 }
