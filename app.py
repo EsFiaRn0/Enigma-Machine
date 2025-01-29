@@ -37,16 +37,18 @@ def log_key():
 def update_plugboard():
     data = request.json
     connections = data.get('connections')
-    
-    if connections:
-        try:
-            enigma.connections = enigma.parse_connections(connections)
-            return jsonify({"status": "success"})
-        except ValueError as e:
-            return jsonify({"status": "error", "message": str(e)}), 400
-        except Exception as e:
-            return jsonify({"status": "error", "message": "An unexpected error occurred."}), 400
-    return jsonify({"status": "error", "message": "Missing connections"}), 400
+
+    if not connections:
+        enigma.connections = {}
+        return jsonify({"status": "success", "message": "Plugboard reseteado con éxito."})
+
+    try:
+        enigma.connections = enigma.parse_connections(connections)
+        return jsonify({"status": "success", "message": "Plugboard actualizado con éxito."})
+    except ValueError as e:
+        return jsonify({"status": "error", "message": str(e)}), 400
+    except Exception as e:
+        return jsonify({"status": "error", "message": "An unexpected error occurred."}), 400
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

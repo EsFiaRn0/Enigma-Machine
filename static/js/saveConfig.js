@@ -23,22 +23,59 @@ export function setupSaveConfig() {
         const plugboardConnections =
             selectedConnections.map((conn) => conn.connection).join(", ") || "No connections";
 
+        const calculateRotorPositions = (rotor1, rotor2, rotor3, textLength) => {
+            const alphabetSize = 26;
+            let shift = textLength;
+        
+            let r3 = rotor3.charCodeAt(0) - 65 - shift;
+            let carry2 = Math.floor(r3 / alphabetSize);
+            r3 = (r3 % alphabetSize + alphabetSize) % alphabetSize;
+        
+            let r2 = rotor2.charCodeAt(0) - 65 + carry2;
+            let carry1 = Math.floor(r2 / alphabetSize);
+            r2 = (r2 % alphabetSize + alphabetSize) % alphabetSize;
+        
+            let r1 = rotor1.charCodeAt(0) - 65 + carry1;
+            r1 = (r1 % alphabetSize + alphabetSize) % alphabetSize;
+        
+            return {
+                rotor1: String.fromCharCode(r1 + 65),
+                rotor2: String.fromCharCode(r2 + 65),
+                rotor3: String.fromCharCode(r3 + 65),
+            };
+        };
+            
+
+        const shift = encryptedText.length;
+
+        const initialPositions = calculateRotorPositions(
+            rotor1.textContent || "A",
+            rotor2.textContent || "A",
+            rotor3.textContent || "A",
+            shift
+        );
+
         const fileContent = `
         === Enigma Configuration ===
         Encrypted Text: ${encryptedText}
-
-        Rotor Positions:
+        
+        Initial Rotor Positions (Before Encryption):
+        - Rotor 1: ${initialPositions.rotor1}
+        - Rotor 2: ${initialPositions.rotor2}
+        - Rotor 3: ${initialPositions.rotor3}
+        
+        Final Rotor Positions (After Encryption):
         - Rotor 1: ${rotor1.textContent}
         - Rotor 2: ${rotor2.textContent}
         - Rotor 3: ${rotor3.textContent}
-
+        
         Plugboard Connections:
         ${plugboardConnections}
-        `;
+        `.trim();
 
         Swal.fire({
             title: "Descargar configuración",
-            text: "Estás a punto de descargar un archivo .txt con el mensaje encriptado y la configuración actual de la máquina Enigma. ¿Deseas continuar?",
+            text: "Estás a punto de descargar un archivo .txt con el mensaje encriptado y la configuración inicial y actual de los rotores. ¿Deseas continuar?",
             icon: "info",
             showCancelButton: true,
             confirmButtonText: "Sí, descargar",

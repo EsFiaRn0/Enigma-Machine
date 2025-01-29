@@ -1,7 +1,7 @@
 import {sendPlugboardConnections} from './serverCommunication.js';
 
 export const selectedConnections = [];
-const selectedSockets = new Set();
+export const selectedSockets = new Set();
 let firstSocket = null;
 const canvas = document.getElementById("plugboard-canvas");
 const ctx = canvas.getContext("2d");
@@ -13,7 +13,7 @@ export function resizeCanvas() {
     redrawConnections(); 
 }
 
-export function drawConnection(startSocket, endSocket, connectionId = null) {
+export function drawConnection(startSocket, endSocket) {
     const rect = canvas.getBoundingClientRect();
     const start = startSocket.getBoundingClientRect();
     const end = endSocket.getBoundingClientRect();
@@ -101,7 +101,23 @@ export function setupPlugboardEvents() {
     });
 }
 
-function resetSocket(socket) {
+export function resetSocket(socket) {
     socket.classList.remove("selected-first");
     socket.style.backgroundColor = "";
+}
+
+export function resetPlugboardState() {
+    selectedConnections.length = 0;
+    selectedSockets.clear();
+    firstSocket = null; 
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    sockets.forEach(socket => {
+        resetSocket(socket);
+    });
+
+    sendPlugboardConnections([]); 
+
+    console.log("Plugboard completamente reseteado.");
 }
