@@ -4,6 +4,8 @@ This project is a functional implementation of the Enigma machine, historically 
 
 Users can encrypt and decrypt messages using configurable rotors and a plugboard, with the ability to save, delete, or reset settings as needed.
 
+![All Machine](https://github.com/EsFiaRn0/Enigma-Machine/issues/1)
+
 ## Table of Contents
 1. [Features](#features)
 2. [Technologies](#technologies)
