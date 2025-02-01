@@ -88,7 +88,9 @@ or
   flask run
 ```
 By default, the application will be available at:
-🔗 http://127.0.0.1:5000/
+```bash
+http://127.0.0.1:5000/
+```
 ---
 
 ## License
