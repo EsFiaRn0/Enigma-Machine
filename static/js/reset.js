@@ -1,3 +1,4 @@
+/* ʕ•́ᴥ•̀ʔっ */
 import { resetPlugboardState } from './plugboardHandler.js';
 
 export function setupResetButton(resetButtonId) {

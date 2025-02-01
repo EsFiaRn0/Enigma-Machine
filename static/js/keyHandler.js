@@ -1,3 +1,4 @@
+/* ʕ•́ᴥ•̀ʔっ */
 import { sendLetterToServer } from './serverCommunication.js';
 
 export function pressKey(keyElement) {

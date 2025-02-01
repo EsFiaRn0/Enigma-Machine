@@ -49,7 +49,7 @@ class Rotor:
         self.position.rotate(-1)
         return self.position[0] == Alphabet[0]
 
-# Enigma class
+# Enigma class ʕ•́ᴥ•̀ʔっ
 class Enigma:
     def __init__(self, rotors, start_position, connections=None):
         if len(rotors) != 3 or len(start_position) != 3:

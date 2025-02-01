@@ -1,3 +1,4 @@
+/* ʕ•́ᴥ•̀ʔっ */
 import { advanceRotorsDown } from './rotorHandler.js';
 
 function removeLastCharacterFromOutputs(originalOutputId, encryptedOutputId) {

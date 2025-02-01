@@ -1,3 +1,4 @@
+/* ʕ•́ᴥ•̀ʔっ */
 import { setupKeyEvents } from './keyHandler.js';
 import { setupRotorEvents } from './rotorHandler.js';
 import { setupPlugboardEvents, resizeCanvas } from './plugboardHandler.js';

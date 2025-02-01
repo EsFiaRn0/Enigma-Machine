@@ -1,3 +1,4 @@
+/* ʕ•́ᴥ•̀ʔっ */
 import {sendPlugboardConnections} from './serverCommunication.js';
 
 export const selectedConnections = [];

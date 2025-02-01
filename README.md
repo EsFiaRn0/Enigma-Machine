@@ -108,3 +108,5 @@ If you have any questions or suggestions, feel free to contact me:
 🐙 GitHub: [EsFiaRn0](https://github.com/EsFiaRn0). 
 
 ---
+
+## Thanks for visiting ʕ•́ᴥ•̀ʔっ
