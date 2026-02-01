@@ -27,6 +27,16 @@
     <!-- Keyboard Section -->
     <section class="keyboard-section">
 
+      <div class="lampboard-container" aria-label="Tablero de lámparas">
+        {% for row in ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"] %}
+        <div class="lampboard-row">
+          {% for letter in row %}
+          <div class="lamp" data-letter="{{ letter }}" aria-label="Lámpara {{ letter }}">{{ letter }}</div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+      
       <div class="keyboard-container">
         {% for row in ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"] %}
         <div class="row">

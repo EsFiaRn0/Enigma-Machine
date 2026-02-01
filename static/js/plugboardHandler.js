@@ -9,9 +9,15 @@ const ctx = canvas.getContext("2d");
 const sockets = document.querySelectorAll(".plug-socket");
 
 export function resizeCanvas() {
-    canvas.width = canvas.parentElement.offsetWidth;
-    canvas.height = canvas.parentElement.offsetHeight;
-    redrawConnections(); 
+    const { offsetWidth, offsetHeight } = canvas.parentElement;
+    const ratio = window.devicePixelRatio || 1;
+
+    canvas.width = offsetWidth * ratio;
+    canvas.height = offsetHeight * ratio;
+    canvas.style.width = `${offsetWidth}px`;
+    canvas.style.height = `${offsetHeight}px`;
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    redrawConnections();
 }
 
 export function drawConnection(startSocket, endSocket) {
@@ -25,22 +31,30 @@ export function drawConnection(startSocket, endSocket) {
     const endY = end.top + end.height / 2 - rect.top;
 
     const cp1X = (startX + endX) / 2;
-    const cp1Y = startY - 50;
+    const cp1Y = startY - 45;
     const cp2X = (startX + endX) / 2;
-    const cp2Y = endY + 50;
-
-    const randomColor1 = getRandomColor();
-    const randomColor2 = getRandomColor();
-    const gradient = ctx.createLinearGradient(startX, startY, endX, endY);
-    gradient.addColorStop(0, randomColor1);
-    gradient.addColorStop(1, randomColor2);
+    const cp2Y = endY + 45;
+    const cableWidth = Math.max(4, start.width * 0.2);
 
     ctx.beginPath();
     ctx.moveTo(startX, startY);
     ctx.bezierCurveTo(cp1X, cp1Y, cp2X, cp2Y, endX, endY);
-    ctx.strokeStyle = gradient;
-    ctx.lineWidth = 4;
-    ctx.shadowBlur = 15;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = "#2f2f2f";
+    ctx.lineWidth = cableWidth;
+    ctx.shadowBlur = 6;
+    ctx.shadowColor = "rgba(0, 0, 0, 0.45)";
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    ctx.bezierCurveTo(cp1X, cp1Y, cp2X, cp2Y, endX, endY);
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = "rgba(200, 200, 200, 0.35)";
+    ctx.lineWidth = Math.max(2, cableWidth * 0.45);
+    ctx.shadowBlur = 0;
     ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
     ctx.stroke();
 }
@@ -50,15 +64,6 @@ function redrawConnections() {
     selectedConnections.forEach(({ firstSocket, socket }) => {
         drawConnection(firstSocket, socket);
     });
-}
-
-export function getRandomColor() {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
 }
 
 export function setupPlugboardEvents() {

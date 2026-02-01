@@ -1,5 +1,5 @@
 /* ʕ•́ᴥ•̀ʔっ */
-import {appendToEncryptedOutput} from './keyHandler.js';
+import { appendToEncryptedOutput, updateLampboard } from './keyHandler.js';
 import {advanceRotors} from './rotorHandler.js';
 
 export function sendLetterToServer(letter) {
@@ -22,6 +22,7 @@ export function sendLetterToServer(letter) {
         if (data.status === "success") {
             const encryptedLetter = data.encrypted_letter;
             appendToEncryptedOutput(encryptedLetter);
+            updateLampboard(encryptedLetter);
         } else {
             console.error(`Error: ${data.message}`);
         }

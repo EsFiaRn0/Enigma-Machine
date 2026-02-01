@@ -1,5 +1,6 @@
 /* ʕ•́ᴥ•̀ʔっ */
 import { advanceRotorsDown } from './rotorHandler.js';
+import { clearLampboardHighlight } from './keyHandler.js';
 
 function removeLastCharacterFromOutputs(originalOutputId, encryptedOutputId) {
     const originalOutput = document.getElementById(originalOutputId);
@@ -13,6 +14,8 @@ function removeLastCharacterFromOutputs(originalOutputId, encryptedOutputId) {
         encryptedOutput.textContent = encryptedOutput.textContent.slice(0, -1);
         advanceRotorsDown();
     }
+
+    clearLampboardHighlight();
 }
 
 export function initializeDeleteFunctionality({ deleteButtonId, originalOutputId, encryptedOutputId }) {

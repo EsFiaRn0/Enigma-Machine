@@ -1,5 +1,6 @@
 /* ʕ•́ᴥ•̀ʔっ */
 import { resetPlugboardState } from './plugboardHandler.js';
+import { clearLampboardHighlight } from './keyHandler.js';
 
 export function setupResetButton(resetButtonId) {
     const resetButton = document.getElementById(resetButtonId);
@@ -22,13 +23,16 @@ export function setupResetButton(resetButtonId) {
         }).then((result) => {
             if (result.isConfirmed) {
                 resetPlugboardState();
+                clearLampboardHighlight();
                 Swal.fire('¡Plugboard reseteado!', '', 'success');
             } else if (result.isDenied) {
                 resetRotors();
+                clearLampboardHighlight();
                 Swal.fire('¡Rotores reseteados!', '', 'success');
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 resetPlugboardState();
                 resetRotors();
+                clearLampboardHighlight();
                 Swal.fire('¡Plugboard y rotores reseteados!', '', 'success');
             }
         });

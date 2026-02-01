@@ -24,6 +24,41 @@ export function appendToEncryptedOutput(encryptedLetter) {
     }
 }
 
+export function updateLampboard(encryptedLetter) {
+    if (window.lampboardTimer) {
+        clearTimeout(window.lampboardTimer);
+    }
+
+    const activeLamp = document.querySelector('.lamp.active');
+    if (activeLamp) {
+        activeLamp.classList.remove('active');
+    }
+
+    const nextLamp = document.querySelector(`.lamp[data-letter="${encryptedLetter}"]`);
+    if (nextLamp) {
+        nextLamp.classList.add('active');
+    }
+
+    window.lampboardTimer = setTimeout(() => {
+        const currentLamp = document.querySelector('.lamp.active');
+        if (currentLamp) {
+            currentLamp.classList.remove('active');
+        }
+    }, 300);
+}
+
+export function clearLampboardHighlight() {
+    const activeLamp = document.querySelector('.lamp.active');
+    if (activeLamp) {
+        activeLamp.classList.remove('active');
+    }
+
+    if (window.lampboardTimer) {
+        clearTimeout(window.lampboardTimer);
+        window.lampboardTimer = null;
+    }
+}
+
 export function setupKeyEvents() {
     const keys = document.querySelectorAll('.key');
     
