@@ -4,7 +4,7 @@ This project is a functional implementation of the Enigma machine, historically 
 
 Users can encrypt and decrypt messages using configurable rotors and a plugboard, with the ability to save, delete, or reset settings as needed.
 
-![Image](https://github.com/user-attachments/assets/edc9cc8a-b127-4a9b-9b84-7e373e323c24)
+![Image](https://github.com/user-attachments/assets/513212e7-ff79-4611-8bfa-eacbfa13bce4)
 
 ## Table of Contents
 1. [Features](#features)
@@ -23,7 +23,7 @@ Users can encrypt and decrypt messages using configurable rotors and a plugboard
 - **Configurable Rotors:** Users can interactively set up and adjust rotors for encryption.  
 - **Interactive Plugboard:** Customize letter swaps dynamically for added encryption complexity.  
 - **Delete Last Character:** Remove the last letter entered for better control while typing.  
-
+- **Lampboard Output:** Displays the encrypted letter in real time, simulating the original Enigma lampboard.  
 ---
 
 ## Technologies
